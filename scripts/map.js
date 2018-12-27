@@ -1,4 +1,4 @@
-var URL = 'http://api.luftdaten.info/static/v2/data.json';
+var URL = 'https://api.luftdaten.info/static/v2/data.json';
 var mapcenter = [50.937430, 4.040934]
 
 var map = L.map('results').setView(mapcenter, 13);
