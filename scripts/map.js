@@ -16,6 +16,8 @@ L.control.scale(options = (imperial = false)).addTo(map);
 
 var api = fetch(URL).then(function(result){
 		return result.json();
+}).then(function(json) {
+	return json
 });
 
 var jsonFeatures = []
