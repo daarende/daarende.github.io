@@ -14,10 +14,11 @@ var hash = new L.Hash(map)
 
 L.control.scale(options = (imperial = false)).addTo(map);
 
-var jsonFeatures = fetch(URL).then(function(result){
+var api = fetch(URL).then(function(result){
 		return result.json();
 });
 
+var jsonFeatures = []
 
 api.forEach(function(point){
    var lat = point.latitud;
