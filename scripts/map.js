@@ -14,25 +14,26 @@ var hash = new L.Hash(map)
 
 L.control.scale(options = (imperial = false)).addTo(map);
 
-var api = fetch(URL).then(function(result){
-		return result.json();
-}).then(function(json) {
-	return json
-});
-
 var jsonFeatures = []
 
-api.forEach(function(point){
-   var lat = point.latitud;
-   var lon = point.longitud;
-   var feature = {type: 'Feature',
-       properties: point,
-       geometry: {
-           type: 'Point',
-           coordinates: [lon,lat]
-       }
+fetch(url)
+	.then((response) => response.json())
+	.then(function(data) {
+		Object.values(data).forEach((sensor) => {
+			var lat = point.latitud;
+			var lon = point.longitud;
+			var feature = {type: 'Feature',
+				properties: point,
+				geometry: {
+					type: 'Point',
+					coordinates: [lon,lat]
+			}
   };
    jsonFeatures.push(feature);
-});
+  })
+  .catch(function(error) {
+    console.log(error);
+  }); 
+
 var geoJson = { type: 'FeatureCollection', features: jsonFeatures };
 L.geoJson(geoJson).addTo(map);
