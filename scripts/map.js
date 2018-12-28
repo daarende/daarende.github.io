@@ -50,5 +50,4 @@ fetch(URL)
     console.log(error);
   }); 
 
-var geoJson = {type: "FeatureCollection", features: jsonFeatures };
-L.geoJson(geoJson).addTo(map);
+var geoJsonLayer = L.geoJson(geoJson).addTo(map);
