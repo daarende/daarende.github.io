@@ -31,6 +31,7 @@ fetch(url)
   };
    jsonFeatures.push(feature);
   })
+	})
   .catch(function(error) {
     console.log(error);
   }); 
