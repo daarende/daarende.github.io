@@ -16,7 +16,7 @@ L.control.scale(options = (imperial = false)).addTo(map);
 
 var jsonFeatures = []
 
-fetch(url)
+fetch(URL)
 	.then((response) => response.json())
 	.then(function(data) {
 		Object.values(data).forEach((sensor) => {
