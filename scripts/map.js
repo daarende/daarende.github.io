@@ -15,6 +15,7 @@ var hash = new L.Hash(map)
 L.control.scale(options = (imperial = false)).addTo(map);
 
 var jsonFeatures = []
+var geoJsonLayer = L.geoJson().addTo(map);
 
 fetch(URL)
 	.then((response) => response.json())
@@ -44,11 +45,12 @@ fetch(URL)
 			}
   };
    jsonFeatures.push(feature);
+   var geoJson = {type: "FeatureCollection", features: jsonFeatures};
+   geoJsonLayer.addData(geoJson)
   })
 	})
   .catch(function(error) {
     console.log(error);
   }); 
 
-var geoJson = {type: "FeatureCollection", features: jsonFeatures};
-var geoJsonLayer = L.geoJson(geoJson).addTo(map);
+
