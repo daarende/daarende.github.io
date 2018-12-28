@@ -40,7 +40,7 @@ fetch(URL)
 				properties: sensor,
 				geometry: {
 					type: 'Point',
-					coordinates: [lat, lon]
+					coordinates: [lon, lat]
 			}
   };
    jsonFeatures.push(feature);
