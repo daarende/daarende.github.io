@@ -20,10 +20,10 @@ fetch(URL)
 	.then((response) => response.json())
 	.then(function(data) {
 		Object.values(data).forEach((sensor) => {
-			var lat = point.latitud;
-			var lon = point.longitud;
+			var lat = sensor.latitud;
+			var lon = sensor.longitud;
 			var feature = {type: 'Feature',
-				properties: point,
+				properties: sensor,
 				geometry: {
 					type: 'Point',
 					coordinates: [lon,lat]
