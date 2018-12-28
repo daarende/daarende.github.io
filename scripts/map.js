@@ -34,13 +34,13 @@ fetch(URL)
 					(sensor.sensor.sensor_type.name == 'SDS011' && sensor.sensordatavalues.length >= 2)))
 		// convert data to geoJson
 		filtered.forEach((sensor) => {
-			var lat = sensor.location.latitude;
-			var lon = sensor.location.longitude;
+			var lat = parseFloat(sensor.location.latitude);
+			var lon = parseFloat(sensor.location.longitude);
 			var feature = {type: 'Feature',
 				properties: sensor,
 				geometry: {
 					type: 'Point',
-					coordinates: [lon,lat]
+					coordinates: [lon, lat]
 			}
   };
    jsonFeatures.push(feature);
@@ -50,5 +50,5 @@ fetch(URL)
     console.log(error);
   }); 
 
-var geoJson = { type: 'FeatureCollection', features: jsonFeatures };
+var geoJson = {type: "FeatureCollection", features: jsonFeatures };
 L.geoJson(geoJson).addTo(map);
