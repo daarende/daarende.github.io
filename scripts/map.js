@@ -34,8 +34,8 @@ fetch(URL)
 					(sensor.sensor.sensor_type.name == 'SDS011' && sensor.sensordatavalues.length >= 2)))
 		// convert data to geoJson
 		filtered.forEach((sensor) => {
-			var lat = sensor.latitude;
-			var lon = sensor.longitude;
+			var lat = sensor.location.latitude;
+			var lon = sensor.location.longitude;
 			var feature = {type: 'Feature',
 				properties: sensor,
 				geometry: {
