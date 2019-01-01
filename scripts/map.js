@@ -42,9 +42,9 @@ fetch(URL)
 			sensor.sensordatavalues.forEach((datavalue) => {
 				if (datavalue.value_type === 'P1'){ //PM10
 					properties.P1 = datavalue.value}
-				else if (datavaule.value_type === 'P2'){ //PM2.5
+				else if (datavalue.value_type === 'P2'){ //PM2.5
 					properties.P2 = datavalue.value}
-				else if (datavaule.value_type === 'temperature'){
+				else if (datavalue.value_type === 'temperature'){
 					properties.temperature = datavalue.value}
 				else if (datavalue.value_type === 'humidity'){
 					properties.humidity = datavalue.value}
