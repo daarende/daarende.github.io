@@ -40,7 +40,18 @@ fetch(URL)
 			var properties = {sensor: sensor.sensor,
 						timestamp: sensor.timestamp,
 						id: sensor.id,
-						sensordatavalues: sensor.sensordatavalues
+						sensor.sensordatavalues.forEach(datavalue => {
+							if (datavalue.value_type === 'P1'){ //PM10
+								sensor.P1 = datavalue.value}
+							else if (datavaule.value_type === 'P2'){ //PM2.5
+								sensor.P2 = datavalue.value}
+							else if (datavaule.value_type === 'temperature'){
+								sensor.temperature = datavalue.value}
+							else if (datavalue.value_type === 'humidity'){
+								sensor.humidity = datavalue.value}
+							else if (datavalue.value_type === 'pressure'){
+								sensor.pressure = datavalue.value}
+			}
 			} 
 			var feature = {type: 'Feature',
 				properties: properties,
