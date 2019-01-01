@@ -12,7 +12,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 var hash = new L.Hash(map)
 
-L.control.scale({imperial = false}).addTo(map);
+L.control.scale({imperial: false}).addTo(map);
 
 var jsonFeatures = []
 
