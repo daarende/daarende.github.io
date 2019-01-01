@@ -38,31 +38,30 @@ fetch(URL)
 			var lon = parseFloat(sensor.location.longitude);
 			var properties = {sensor: sensor.sensor,
 						timestamp: sensor.timestamp,
-						id: sensor.id,
-						sensor.sensordatavalues.forEach(datavalue => {
-							if (datavalue.value_type === 'P1'){ //PM10
-								sensor.P1 = datavalue.value}
-							else if (datavaule.value_type === 'P2'){ //PM2.5
-								sensor.P2 = datavalue.value}
-							else if (datavaule.value_type === 'temperature'){
-								sensor.temperature = datavalue.value}
-							else if (datavalue.value_type === 'humidity'){
-								sensor.humidity = datavalue.value}
-							else if (datavalue.value_type === 'pressure'){
-								sensor.pressure = datavalue.value}
-			}
-			)} 
+						id: sensor.id};
+			sensor.sensordatavalues.forEach((datavalue) => {
+				if (datavalue.value_type === 'P1'){ //PM10
+					properties.P1 = datavalue.value}
+				else if (datavaule.value_type === 'P2'){ //PM2.5
+					properties.P2 = datavalue.value}
+				else if (datavaule.value_type === 'temperature'){
+					properties.temperature = datavalue.value}
+				else if (datavalue.value_type === 'humidity'){
+					properties.humidity = datavalue.value}
+				else if (datavalue.value_type === 'pressure'){
+					properties.pressure = datavalue.value}
+				})
+		 
 			var feature = {type: 'Feature',
 				properties: properties,
 				geometry: {
 					type: 'Point',
-					coordinates: [lon, lat]
-			}
-  };
-   jsonFeatures.push(feature);
-   var geoJson = {type: "FeatureCollection", features: jsonFeatures};
-   // var geoJsonLayer = L.geoJson(geoJson, {style: style}).addTo(map);
+					coordinates: [lon, lat]}
+			};
+			jsonFeatures.push(feature);
   })
+  var geoJson = {type: "FeatureCollection", features: jsonFeatures};
+   // var geoJsonLayer = L.geoJson(geoJson, {style: style}).addTo(map);
 	})
   .catch(function(error) {
     console.log(error);
