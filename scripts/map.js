@@ -37,10 +37,10 @@ fetch(URL)
 		filtered.forEach((sensor) => {
 			var lat = parseFloat(sensor.location.latitude);
 			var lon = parseFloat(sensor.location.longitude);
-			var properties = {sensor: sensor.properties.sensor,
-						timestamp: sensor.properties.timestamp,
-						id: sensor.properties.id,
-						sensordatavalues: sensor.properties.sensordatavalues
+			var properties = {sensor: sensor.sensor,
+						timestamp: sensor.timestamp,
+						id: sensor.id,
+						sensordatavalues: sensor.sensordatavalues
 			} 
 			var feature = {type: 'Feature',
 				properties: properties,
