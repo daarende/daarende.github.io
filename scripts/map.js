@@ -37,8 +37,13 @@ fetch(URL)
 		filtered.forEach((sensor) => {
 			var lat = parseFloat(sensor.location.latitude);
 			var lon = parseFloat(sensor.location.longitude);
+			var properties = {sensor: sensor.properties.sensor,
+						timestamp: sensor.properties.timestamp,
+						id: sensor.properties.id,
+						sensordatavalues: sensor.properties.sensordatavalues
+			} 
 			var feature = {type: 'Feature',
-				properties: sensor,
+				properties: properties,
 				geometry: {
 					type: 'Point',
 					coordinates: [lon, lat]
@@ -46,11 +51,37 @@ fetch(URL)
   };
    jsonFeatures.push(feature);
    var geoJson = {type: "FeatureCollection", features: jsonFeatures};
-   // var geoJsonLayer = L.geoJson(geoJson).addTo(map);
+   // var geoJsonLayer = L.geoJson(geoJson, {style: style}).addTo(map);
   })
 	})
   .catch(function(error) {
     console.log(error);
   }); 
 
+function getColor_pm10(d) {
+    return d > 1000 ? '#800026' :
+           d > 500  ? '#BD0026' :
+           d > 200  ? '#E31A1C' :
+           d > 100  ? '#FC4E2A' :
+           d > 50   ? '#FD8D3C' :
+           d > 20   ? '#FEB24C' :
+           d > 10   ? '#FED976' :
+                      '#FFEDA0';
+}
 
+// '#00796B', '#F9A825', '#E65100', '#DD2C00'
+	
+
+//var geoJsonLayer = L.geoJson(geoJson, {
+//    pointToLayer: function (feature, latlng) {
+//		var geojsonMarkerOptions = {
+//		radius: 8,
+//		fillcolor: getColor_pm10(feature.properties.sensordatavalues.
+//		color: '#000',
+//		weight: 1,
+//		opacity: 1,
+//		fillOpacity: 0.8
+//	};
+//        return L.circleMarker(latlng, geojsonMarkerOptions);
+//    }
+//}).addTo(map);
