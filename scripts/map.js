@@ -16,7 +16,6 @@ L.control.scale(options = (imperial = false)).addTo(map);
 
 var jsonFeatures = []
 
-
 fetch(URL)
 	.then((response) => response.json())
 	.then(function(data) {
@@ -52,7 +51,7 @@ fetch(URL)
 							else if (datavalue.value_type === 'pressure'){
 								sensor.pressure = datavalue.value}
 			}
-			} 
+			)} 
 			var feature = {type: 'Feature',
 				properties: properties,
 				geometry: {
