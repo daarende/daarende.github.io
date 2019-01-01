@@ -46,7 +46,7 @@ fetch(URL)
   };
    jsonFeatures.push(feature);
    var geoJson = {type: "FeatureCollection", features: jsonFeatures};
-   var geoJsonLayer = L.geoJson(geoJson).addTo(map);
+   // var geoJsonLayer = L.geoJson(geoJson).addTo(map);
   })
 	})
   .catch(function(error) {
