@@ -12,7 +12,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 var hash = new L.Hash(map)
 
-L.control.scale(options = (imperial = false)).addTo(map);
+L.control.scale({imperial = false}).addTo(map);
 
 var jsonFeatures = []
 
@@ -38,7 +38,8 @@ fetch(URL)
 			var lon = parseFloat(sensor.location.longitude);
 			var properties = {sensor: sensor.sensor,
 						timestamp: sensor.timestamp,
-						id: sensor.id};
+						id: sensor.id,
+						sensordatavalues: sensor.sensordatavalues};
 			sensor.sensordatavalues.forEach((datavalue) => {
 				if (datavalue.value_type === 'P1'){ //PM10
 					properties.P1 = datavalue.value}
@@ -81,16 +82,15 @@ function getColor_pm10(d) {
 // '#00796B', '#F9A825', '#E65100', '#DD2C00'
 	
 
-//var geoJsonLayer = L.geoJson(geoJson, {
-//    pointToLayer: function (feature, latlng) {
-//		var geojsonMarkerOptions = {
-//		radius: 8,
-//		fillcolor: getColor_pm10(feature.properties.sensordatavalues.
-//		color: '#000',
-//		weight: 1,
-//		opacity: 1,
-//		fillOpacity: 0.8
-//	};
-//        return L.circleMarker(latlng, geojsonMarkerOptions);
-//    }
-//}).addTo(map);
+var geoJsonLayer = L.geoJson(geoJson, {
+    pointToLayer: function (feature, latlng) {
+		var geojsonMarkerOptions = {
+		radius: 8,
+		fillcolor: getColor_pm10(parseFloat(feature.properties.p1)),
+		color: '#000',
+		weight: 1,
+		opacity: 1,
+		fillOpacity: 0.8};
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+}).addTo(map);
