@@ -63,22 +63,31 @@ fetch(URL)
   })
   var geoJson = {type: "FeatureCollection", features: jsonFeatures};
   var geoJsonLayer = L.geoJson(geoJson, {
-    pointToLayer: function (feature, latlng) {
-		var geojsonMarkerOptions = {
-		radius: 8,
-		fillcolor: getColor_pm10(parseFloat(feature.properties.p1)),
-		color: getColor_pm10(parseFloat(feature.properties.p1)),
-		weight: 1,
-		opacity: 1,
-		fillOpacity: 0.8};
-        return L.circleMarker(latlng, geojsonMarkerOptions);
-    }
-	}).addTo(map);
+    pointToLayer: pointToLayer}).addTo(map);
 	})
   .catch(function(error) {
     console.log(error);
 	}); 
 
+function pointToLayer(feature, latlng){
+	var geojsonMarkerOptions = {
+		radius: 8,
+		fillColor: getColor_pm10(parseFloat(feature.properties.p1)),
+		color: getColor_pm10(parseFloat(feature.properties.p1)),
+		weight: 1,
+		opacity: 1,
+		fillOpacity: 0.8};
+	var popupContent = 'ID: '
+	popupContent += feature.properties.id
+	popupContent += ' PM10: ' 
+	popupContent += feature.properties.P1
+	popupContent += ' µg/m³\n PM2.5: '
+	popupContent += feature.properties.P2
+	popupContent += ' µg/m³\n'
+     return L.circleMarker(latlng, geojsonMarkerOptions).bindPopup(popupContent);
+    }
+
+	
 function getColor_pm10(d) {
     return d > 100  ? '#DD2C00' :
            d > 50   ? '#E65100' :
