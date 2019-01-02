@@ -67,7 +67,7 @@ fetch(URL)
 		var geojsonMarkerOptions = {
 		radius: 8,
 		fillcolor: getColor_pm10(parseFloat(feature.properties.p1)),
-		color: '#000',
+		color: getColor_pm10(parseFloat(feature.properties.p1)),
 		weight: 1,
 		opacity: 1,
 		fillOpacity: 0.8};
