@@ -11,7 +11,6 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(map);
 
 var hash = new L.Hash(map)
-
 L.control.scale({imperial: false}).addTo(map);
 
 var jsonFeatures = []
@@ -78,17 +77,13 @@ fetch(URL)
 	})
   .catch(function(error) {
     console.log(error);
-  }); 
+	}); 
 
 function getColor_pm10(d) {
-    return d > 1000 ? '#800026' :
-           d > 500  ? '#BD0026' :
-           d > 200  ? '#E31A1C' :
-           d > 100  ? '#FC4E2A' :
-           d > 50   ? '#FD8D3C' :
-           d > 20   ? '#FEB24C' :
-           d > 10   ? '#FED976' :
-                      '#FFEDA0';
+    return d > 100  ? '#DD2C00' :
+           d > 50   ? '#E65100' :
+           d > 10   ? '#F9A825' :
+                      '#00796B';
 }
 
 // '#00796B', '#F9A825', '#E65100', '#DD2C00'
